@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+<head>
+    <title>Almost Gallery</title>
+</head>
+<body>
+<h1>List of photos: </h1>
+<div>
+    {% if albums %}
+    <strong>{{albums.name}}</strong>
+    {% if photos %}
+    <ul>
+        {% for photo in photos %}
+            <li>{{ photo.title }}</li>
+            <img src="{{ photo.image.url }}" />
+        {% endfor %}
+    </ul>
+
+    {% else %}
+    <strong>There's not albums right now!</strong>
+    {% endif %}
+    {% endif %}
+</div>
+</body>
+
+</html>
