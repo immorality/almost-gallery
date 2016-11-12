@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 from django.db import models
 
@@ -9,9 +10,15 @@ class Album(models.Model):
     user = models.ForeignKey(User)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
+    slug = models.SlugField(blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Album, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.name
+
 
 
 class Photo(models.Model):

@@ -4,14 +4,17 @@
 <html>
 
 <head>
-    <title>almostGallery</title>
+    <title>almost-gallery</title>
 </head>
 
 <body>
-<h1>Rango says..</h1>
+<h1>List of albums: </h1>
 <div>
-    hey there partner!<br />
-    <strong>{{boldmessage}}</strong><br />
+    {% for album in albums %}
+    <ul>
+        <li>{{album.id}} <a href="{% url 'gallery:album' album.slug %}">{{album.name}}</a></li>
+    </ul>
+    {% endfor %}
 </div>
 <div>
     <a href="/gallery/about/">About</a><br />
