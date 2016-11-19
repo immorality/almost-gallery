@@ -17,9 +17,9 @@
     {% endfor %}
 </div>
 <div>
-    <a href="/gallery/about/">About</a><br />
+    <a href="{% url 'gallery:about' %}">About</a><br />
 
-    <img src="{% static 'images/Koala.jpg' %}" alt="Picture of Rango"/>
+    <img src="{% static 'images/Koala.jpg' %}" alt="Picture of Koalushka"/>
 </div>
 </body>
 

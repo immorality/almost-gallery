@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from gallery.models import Album, Photo
+from gallery.forms import AlbumForm, PhotoForm
 from django.http import HttpResponse
 def index(request):
     context_dict = {}
@@ -29,5 +30,36 @@ def photos(request, album_name_slug):
 
     return render(request, 'gallery/photos.html', context_dict)
 
+def add_album(request):
+    if request.method == 'POST':
+        form = AlbumForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return index(request)
+        else:
+            print form.errors
+    return render(request, 'gallery/add_album.html', {'form': form})
+
+def add_photo(request, album_slug):
+    try:
+        album = Album.objects.get(slug=album_slug)
+    except Album.DoesNotExist:
+        album = None
+    form = PhotoForm()
+
+    if request.method == 'POST':
+        form = PhotoForm(request.POST)
+        if form.is_valid():
+            if album:
+                photo = form.save(commit=False)
+                photo.album = album
+                photo.save()
+                return photos(request, album_slug)
+        else:
+            print form.errors
+    context_dict = {'form': form, 'album': album}
+    return render(request, '/gallery/add_photo.html', context_dict)
 
 
