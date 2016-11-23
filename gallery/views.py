@@ -35,31 +35,34 @@ def add_album(request):
         form = AlbumForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
+            post.user = request.user
             post.save()
             return index(request)
         else:
             print form.errors
+    form = AlbumForm()
     return render(request, 'gallery/add_album.html', {'form': form})
 
-def add_photo(request, album_slug):
+def add_photo(request, album_name_slug):
     try:
-        album = Album.objects.get(slug=album_slug)
+        album = Album.objects.get(slug=album_name_slug)
     except Album.DoesNotExist:
         album = None
-    form = PhotoForm()
 
     if request.method == 'POST':
-        form = PhotoForm(request.POST)
+        form = PhotoForm(request.POST, request.FILES)
         if form.is_valid():
             if album:
                 photo = form.save(commit=False)
                 photo.album = album
+                photo.image = form.cleaned_data['image']
+                photo.user = request.user
                 photo.save()
-                return photos(request, album_slug)
+                return photos(request, album_name_slug)
         else:
             print form.errors
-    context_dict = {'form': form, 'album': album}
-    return render(request, '/gallery/add_photo.html', context_dict)
+    form = PhotoForm()
+    context_dict = {'form': form, 'albums': album}
+    return render(request, 'gallery/add_photo.html', context_dict)
 
 
