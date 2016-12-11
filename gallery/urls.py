@@ -1,5 +1,7 @@
-from django.conf.urls import url
+from django.conf.urls import url, patterns
 from gallery import views
+
+app_name='gallery'
 
 
 

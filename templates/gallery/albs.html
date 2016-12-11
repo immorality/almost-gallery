@@ -1,0 +1,9 @@
+<ul>
+    {% for album in albs %}
+        {% if album == act_alb %}
+            <strong><li><a href="{% url 'album' album.slug">{{album.name}}</a></li></strong>
+        {% else %}
+            <li><a href="{% url 'album' album.slug">{{album.name}}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>

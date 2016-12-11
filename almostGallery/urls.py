@@ -1,7 +1,8 @@
-from django.conf.urls import url
+from django.conf.urls import url, patterns
 from django.contrib import admin
 from gallery import views
 from django.conf.urls import include
+from almostGallery import settings
 
 
 

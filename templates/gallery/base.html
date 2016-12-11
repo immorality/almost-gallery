@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load gallery_template_tags %}
+<html>
+<head>
+    <title>almost-gallery</title>
+</head>
+<body>
+    <div>
+        <a href="{% url 'gallery:index' %}">Home</a>
+        <a href="{% url 'gallery:add_album'%}">Add album</a>
+    </div>
+    <div>
+    {% block body_block %}
+    {% endblock %}
+    </div>
+</body>
+</html>

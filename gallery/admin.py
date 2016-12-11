@@ -1,5 +1,5 @@
 from django.contrib import admin
-from gallery.models import Album, Photo
+from gallery.models import Album, Photo, UserProfile
 # Register your models here.
 
 class AlbumAdmin(admin.ModelAdmin):
@@ -7,3 +7,4 @@ class AlbumAdmin(admin.ModelAdmin):
 
 admin.site.register(Album, AlbumAdmin)
 admin.site.register(Photo)
+admin.site.register(UserProfile)

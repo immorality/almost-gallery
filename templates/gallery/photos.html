@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% extends 'gallery/base.html' %}
 {% load static %}
 
 <html>
@@ -7,6 +8,8 @@
     <title>Almost Gallery</title>
 </head>
 <body>
+{% block body_block %}
+<a href="{% url 'gallery:add_photo' albums.slug %}">Add new photo</a><br />
 <h1>List of photos: </h1>
 <div>
     {% if albums %}
@@ -24,6 +27,7 @@
     {% endif %}
     {% endif %}
 </div>
+{% endblock %}
 </body>
 
 </html>

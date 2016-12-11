@@ -5,6 +5,14 @@ from django.template.defaultfilters import slugify
 from django.db import models
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    website = models.URLField(blank=True)
+    picture = models.ImageField(upload_to='./static/profile_images', blank=True)
+
+    def __unicode__(self):
+        return self.username
+
 class Album(models.Model):
     name = models.CharField(max_length=20)
     user = models.ForeignKey(User)

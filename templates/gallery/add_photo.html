@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-
+{% extends 'gallery/base.html' %}
+{% load gallery_template_tags %}
 <html>
     <head>
         <title>almostGallery</title>
     </head>
 
     <body>
+        {% block body_block %}
         <h1>Add a photo</h1>
         <div>
             <form id="photo_form" method="post" enctype="multipart/form-data">
@@ -21,5 +23,7 @@
                 <input type="submit" name="submit" value="Add photo"/>
             </form>
         </div>
+        {% endblock %}
+        {% get_album_list %}
     </body>
 </html>
