@@ -1,5 +1,6 @@
 from django import forms
-from gallery.models import Album, Photo
+from gallery.models import Album, Photo, User, UserProfile
+
 
 class AlbumForm(forms.ModelForm):
     name = forms.CharField(max_length=40,
@@ -21,5 +22,17 @@ class PhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
         fields = ('title', )
+
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('website', 'picture')
 
 
