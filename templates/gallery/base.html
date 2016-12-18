@@ -8,8 +8,13 @@
 <body>
     <div>
         <a href="{% url 'gallery:index' %}">Home</a>
+        {% if user.is_authenticated %}
         <a href="{% url 'gallery:add_album' %}">Add album</a>
+        <a href="{% url 'gallery:logout' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'gallery:login' %}">Sing in</a>
         <a href="{% url 'gallery:register' %}">Sing up</a>
+        {% endif %}
     </div>
     <div>
     {% block body_block %}

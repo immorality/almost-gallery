@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from gallery.models import Album, Photo
@@ -116,4 +117,20 @@ def user_login(request):
                 login(request,
                       user)
                 return HttpResponseRedirect(reverse('gallery:index'))
+            else:
+                return HttpResponse('Your account is disabled.')
+        else:
+            print "Invalid login details: {0}, {1}".format(username, password)
+            return HttpResponse("Incorrect username or password.")
+    else:
+        return render(request, 'gallery/login.html', {})
 
+@login_required
+def restricted(request):
+    return HttpResponse("You see this, because you're logined in.")
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('gallery:index'))

@@ -12,6 +12,13 @@
 <body>
 {% block body_block %}
 <a href="/admin">Login(Admin Django)</a>
+<br />
+{% if user.is_authenticated %}
+    Hello, {{user.username}}
+{% else %}
+    Welcome, you need to login in.
+{% endif %}
+<br />
 <h1>List of albums: </h1>
 <div>
     <ol type="1">

@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^album/(?P<album_name_slug>[\w\-]+)/add_photo/$', views.add_photo, name='add_photo'),
     url(r'^album/(?P<album_name_slug>[\w\-]+)/$', views.photos, name='album'),
     url(r'^register/$', views.register, name='register'),
-    #url(r'^login/$', views.login, name='login'),
+    url(r'^login/$', views.user_login, name='login'),
+    url(r'^logout/$', views.user_logout, name='logout'),
 ]
