@@ -1,24 +1,38 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 {% load staticfiles %}
 {% load gallery_template_tags %}
-<html>
-<head>
+<html >
+<head xmlns="http://www.w3.org/1999/xhtml">
     <title>almost-gallery</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
 </head>
 <body>
-    <div>
-        <a href="{% url 'gallery:index' %}">Home</a>
+    <container>
+        <header>
+            <ul id="header" >
+             <li ><a href="{% url 'gallery:index' %}" class="button">Home</a></li>
         {% if user.is_authenticated %}
-        <a href="{% url 'gallery:add_album' %}">Add album</a>
-        <a href="{% url 'gallery:logout' %}">Logout</a>
-        {% else %}
-        <a href="{% url 'gallery:login' %}">Sing in</a>
-        <a href="{% url 'gallery:register' %}">Sing up</a>
-        {% endif %}
-    </div>
-    <div>
-    {% block body_block %}
-    {% endblock %}
-    </div>
+             <li style="float:right;margin-right:5px;"><a href="{% url 'gallery:add_album' %}" class="button">Add album</a></li>
+             <li style="float:right;margin-right:5px;"><a href="{% url 'gallery:logout' %}" class="button">Logout</a></li>
+            {% else %}
+             <li style="float:right;margin-right:5px;" ><a href="{% url 'gallery:login' %}" class="button">Sing in</a></li>
+             <li style="float:right;margin-right:5px;"> <a href="{% url 'gallery:register' %}" class="button">Sing up</a></li>
+            {% endif %}
+            </ul>
+        </header>
+        <content>
+             {% if user.is_authenticated %}
+                    <h2 class="title" style="float:right">Hello, {{user.username}}</h2>
+                {% else %}
+                    <h2 class="title" style="float:right">Welcome, you need to log in.</h2>
+                {% endif %}
+
+                <div>
+                {% block body_block %}
+                {% endblock %}
+                </div>
+        </content>
+
+    </container>
 </body>
 </html>

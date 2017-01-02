@@ -1,6 +1,7 @@
 from django.conf.urls import url, patterns
 from django.contrib import admin
 from gallery import views
+from gallery import urls
 from django.conf.urls import include
 from almostGallery import settings
 

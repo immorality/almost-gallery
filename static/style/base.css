@@ -1,0 +1,89 @@
+        body{
+            background-color:rgba(51,153,51,0.4);
+            margin:0;
+            padding:0;
+        }
+/*Simple button style*/
+    .button {
+        background-color: #4CAF50;
+        border-radius:3px;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+/*albumList*/
+    a.albumList{
+        color:#006600;
+        text-decoration: none;
+    }
+    a.albumList:hover{
+        color:#030;
+        text-decoration: none;
+    }
+    a.albumList:active{
+        color:#006600;
+        text-decoration: none;
+    }
+    a.albumList:visited{
+        color:#006600;
+        text-decoration: none;
+    }
+
+/*Color for titles*/
+    .title{
+        color:#006600;
+    }
+
+/*Header style*/
+    header{
+        background-color:#003300;
+        padding:5px;
+        margin:0px 3px 0px 3 px;
+    }
+    #header {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    ul[id=header] li{
+        display: inline;
+    }
+    ul[id=header] li a {
+        padding: 8px;
+    }
+    ul[id=header] li a:hover {
+        background-color:#001a00;
+    }
+    ul[id=header] li a:active {
+        background-color:#001a00;
+    }
+
+/*Style for photos in album*/
+    div.img {
+        margin: 5px;
+        border: 1px solid #4caf50;
+        float: left;
+        width: 180px;
+    }
+    div.img:hover {
+        border: 1px solid #006602;
+    }
+
+    div.img img {
+        width: 100%;
+        height: auto;
+    }
+
+    div.desc {
+        padding: 15px;
+        text-align: center;
+    }
+    #photoList {
+        list-style-type: none;
+    }
+
+
+

@@ -1,33 +1,35 @@
 <!DOCTYPE html>
+
 {% extends 'gallery/base.html' %}
-{% load static %}
+{% load staticfiles %}
 
 <html>
-
 <head>
-    <title>Almost Gallery</title>
+      <title>Almost Gallery</title>
 </head>
 <body>
-{% block body_block %}
-<a href="{% url 'gallery:add_photo' albums.slug %}">Add new photo</a><br />
-<h1>List of photos: </h1>
-<div>
-    {% if albums %}
-    <strong>{{albums.name}}</strong>
-    {% if photos %}
-    <ul>
-        {% for photo in photos %}
-            <li>{{ photo.title }}</li>
-            <img src="{{ photo.image.url }}" />
-        {% endfor %}
-    </ul>
-
-    {% else %}
-    <strong>There's not photos right now!</strong>
-    {% endif %}
-    {% endif %}
-</div>
-{% endblock %}
+    {% block body_block %}
+    <div style="margin-left:20px;">
+        {% if albums %}
+        <h1 class="title">{{albums.name}}</h1>
+        <a href="{% url 'gallery:add_photo' albums.slug %}" class="button" >Add new photo</a>
+        <br/><br/>
+        {% if photos %}
+        <ul id="photoList">
+            {% for photo in photos %}
+            <li>
+                <div class="img">
+                <img src="{{ photo.image.url }}" />
+                <div class="desc">{{ photo.title }}</div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong class="title">There's not photos right now!</strong>
+        {% endif %}
+        {% endif %}
+    </div>
+    {% endblock %}
 </body>
-
 </html>

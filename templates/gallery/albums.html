@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-{% load static %}
+{% load staticfiles %}
 
 <html>
 
 <head>
     <title>almostGallery</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style/albums.css' %}" />
+
 </head>
 
 <body>
-<h1>Rango says..</h1>
-<div>
-    hey there partner!<br />
-</div>
+
+
 
 <div>
     {% if albums %}
 
     <ul>
         {% for album in albums %}
-            <li>{{ album.name }}</li>
+            <li class="title">{{ album.name }}</li>
         {% endfor %}
     </ul>
 
@@ -27,7 +27,7 @@
     {% endif %}
 </div>
 
-<div>
+<div class="img">
     <a href="/gallery/about/">About</a><br />
 
     <img src="{% static 'images/Koala.jpg' %}" alt="Picture of Rango"/>
